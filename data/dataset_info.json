@@ -1,0 +1,66 @@
+{
+  "builder_name": "parquet",
+  "citation": "",
+  "config_name": "default",
+  "dataset_name": "humaneval_plan_generation",
+  "dataset_size": 661739,
+  "description": "",
+  "download_checksums": {
+    "hf://datasets/verifiers-for-code/humaneval_plan_generation@39a9ec8d996111cb3f49bd492bffefcfa4fc7af7/data/test-00000-of-00001.parquet": {
+      "num_bytes": 298250,
+      "checksum": null
+    }
+  },
+  "download_size": 298250,
+  "features": {
+    "task_id": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "prompt": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "canonical_solution": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "test": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "entry_point": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "sonnet-3.5_gold_plans": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "cleaned_sonnet-3.5_gold_plans": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "generated_phi3_baseline": {
+      "dtype": "string",
+      "_type": "Value"
+    }
+  },
+  "homepage": "",
+  "license": "",
+  "size_in_bytes": 959989,
+  "splits": {
+    "test": {
+      "name": "test",
+      "num_bytes": 661739,
+      "num_examples": 164,
+      "dataset_name": "humaneval_plan_generation"
+    }
+  },
+  "version": {
+    "version_str": "0.0.0",
+    "major": 0,
+    "minor": 0,
+    "patch": 0
+  }
+}

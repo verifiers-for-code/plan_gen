@@ -1,0 +1,1 @@
+Please provide an efficient and self-contained Python script that solves the following problem in a markdown code block:
