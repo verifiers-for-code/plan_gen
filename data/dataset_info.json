@@ -3,15 +3,15 @@
   "citation": "",
   "config_name": "default",
   "dataset_name": "humaneval_plan_generation",
-  "dataset_size": 661739,
+  "dataset_size": 1063061,
   "description": "",
   "download_checksums": {
-    "hf://datasets/verifiers-for-code/humaneval_plan_generation@39a9ec8d996111cb3f49bd492bffefcfa4fc7af7/data/test-00000-of-00001.parquet": {
-      "num_bytes": 298250,
+    "hf://datasets/verifiers-for-code/humaneval_plan_generation@2620bb12da3de3b2d5d3ec79e040dfa37a0dd069/data/test-00000-of-00001.parquet": {
+      "num_bytes": 398390,
       "checksum": null
     }
   },
-  "download_size": 298250,
+  "download_size": 398390,
   "features": {
     "task_id": {
       "dtype": "string",
@@ -44,15 +44,19 @@
     "generated_phi3_baseline": {
       "dtype": "string",
       "_type": "Value"
+    },
+    "generated_phi3_plan_generation": {
+      "dtype": "string",
+      "_type": "Value"
     }
   },
   "homepage": "",
   "license": "",
-  "size_in_bytes": 959989,
+  "size_in_bytes": 1461451,
   "splits": {
     "test": {
       "name": "test",
-      "num_bytes": 661739,
+      "num_bytes": 1063061,
       "num_examples": 164,
       "dataset_name": "humaneval_plan_generation"
     }

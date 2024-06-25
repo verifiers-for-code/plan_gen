@@ -10,26 +10,16 @@ MODEL = "microsoft/Phi-3-mini-4k-instruct"
 NUM_GPUS = torch.cuda.device_count()
 GPU_MEMORY_UTILIZATION = 0.93
 TEMPERATURE = 0.0
-MAX_TOKENS = 512
-TOP_P = 1.0
+MAX_TOKENS = 2048
+TOP_P = 0.95
+__MAGIC_SPLITTER__ = "-[[]]-this-is-really-our-highest-priority-[[]]-"
 
 # Detect root directory
 ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 sys.path.append(ROOT_DIR)
 
-# Read instruction prompt
-INSTRUCTION_PROMPT_PATH = os.path.join(ROOT_DIR, "prompts", "system_prompts", "phi3_baseline.txt")
-
-def read_text_file(file_path):
-    with open(file_path, "r") as file:
-        content = file.read()
-    return content
-
-instruction_prompt = read_text_file(INSTRUCTION_PROMPT_PATH)
-
 llm = LLM(
     MODEL,
-    # enable_prefix_caching=True,
     gpu_memory_utilization=GPU_MEMORY_UTILIZATION,
     tensor_parallel_size=NUM_GPUS,
 )
@@ -44,21 +34,26 @@ print("Loaded Model")
 
 def make_prompts_for_data(data):
     prompts = []
+    response = f"""
+    Below is a self-contained Python script that solves the problem: 
+    ```python 
+    {__MAGIC_SPLITTER__}
+    ```
+    """
     for row in data:
-        user_content = row["prompt"]
-        prompt = [
-            {
-                "role": "user",
-                "content": instruction_prompt + "\n" + user_content,
-            },
-        ]
-        prompt = tokenizer.apply_chat_template(
-            prompt, tokenize=False, add_generation_prompt=True
-        )
-        prompts.append(prompt)
+        user_content = row["cleaned_sonnet-3.5_gold_plans"]
+        prompt = f"Please provide a self-contained Python script that solves the following problem in a markdown code block. Follow the given plan.\n```\n{user_content.strip()}\n```\n"
+        chat_prompt = tokenizer.apply_chat_template(
+            [
+                {"role": "user", "content": prompt},
+                {"role": "assistant", "content": response},
+            ],
+            tokenize=False
+        ).split(__MAGIC_SPLITTER__)[0]
+        prompts.append(chat_prompt)
     return prompts
 
-def process_for_dataset_split(df, column_name="generated_phi3_baseline"):
+def process_for_dataset_split(df, column_name="generated_phi3_plan_generation"):
     print("Generating Prompts...")
     prompts = make_prompts_for_data(df)
     
@@ -70,11 +65,23 @@ def process_for_dataset_split(df, column_name="generated_phi3_baseline"):
     outputs = llm.generate(prompts, sampling_params)
     generated_texts = [output.outputs[0].text for output in outputs]
     
+    # Process the generated texts
+    processed_texts = []
+    for text in generated_texts:
+        # Extract the code from the markdown block
+        start = text.find("```python")
+        end = text.rfind("```")
+        if start != -1 and end != -1:
+            code = text[start+9:end].strip()
+        else:
+            code = text  # If no markdown block found, use the entire text
+        processed_texts.append(code)
+    
     # Drop the column if it exists
     if column_name in df.column_names:
         df = df.remove_columns(column_name)
     
-    df = df.add_column(column_name, generated_texts)
+    df = df.add_column(column_name, processed_texts)
     return df
 
 dataset = load_dataset(DATASET, split="test")
