@@ -1,0 +1,30 @@
+<thinking>
+To create an effective action plan for this problem, I need to break down the solution into clear, logical steps that guide the implementation without providing the full code. The plan should cover:
+1. Parsing the input string into words
+2. Setting up a loop to process each word
+3. Implementing the case-insensitive comparison logic for prefixes, suffixes, and substrings
+4. Applying the capitalization rules based on the conditions
+5. Assembling the final result
+</thinking>
+
+<plan>
+Action Plan:
+1. Split the input string into a list of words.
+2. Create an empty list to store the processed words.
+3. Iterate through each word in the list of words:
+    a. Convert the current word to lowercase for case-insensitive comparison.
+    b. Check if the lowercase word meets any of the following conditions:
+        - Starts with any of the prefixes (case-insensitive)
+        - Ends with any of the suffixes (case-insensitive)
+        - Contains any of the substrings (case-insensitive)
+    c. If any condition is met:
+        - Capitalize the original word (first letter uppercase, rest lowercase)
+    d. If no condition is met:
+        - Convert the original word to lowercase
+    e. Add the processed word to the list of processed words.
+4. Join the list of processed words with spaces to create the final string.
+5. Return the final string.
+
+Note: Use appropriate string methods for comparisons and transformations.
+Be careful to perform case-insensitive comparisons correctly.
+</plan>
