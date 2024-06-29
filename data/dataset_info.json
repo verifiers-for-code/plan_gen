@@ -3,15 +3,15 @@
   "citation": "",
   "config_name": "default",
   "dataset_name": "humaneval_plan_generation",
-  "dataset_size": 1063061,
+  "dataset_size": 1501695,
   "description": "",
   "download_checksums": {
-    "hf://datasets/verifiers-for-code/humaneval_plan_generation@2620bb12da3de3b2d5d3ec79e040dfa37a0dd069/data/test-00000-of-00001.parquet": {
-      "num_bytes": 398390,
+    "hf://datasets/verifiers-for-code/humaneval_plan_generation@c150b2755162c343d71f26d3ea23676be16594bb/data/test-00000-of-00001.parquet": {
+      "num_bytes": 651347,
       "checksum": null
     }
   },
-  "download_size": 398390,
+  "download_size": 651347,
   "features": {
     "task_id": {
       "dtype": "string",
@@ -48,15 +48,27 @@
     "generated_phi3_plan_generation": {
       "dtype": "string",
       "_type": "Value"
+    },
+    "phi3-planner-plans": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "cleaned-phi3-planner-plans": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "self_planning_Phi-3-mini-4k-instruct": {
+      "dtype": "string",
+      "_type": "Value"
     }
   },
   "homepage": "",
   "license": "",
-  "size_in_bytes": 1461451,
+  "size_in_bytes": 2153042,
   "splits": {
     "test": {
       "name": "test",
-      "num_bytes": 1063061,
+      "num_bytes": 1501695,
       "num_examples": 164,
       "dataset_name": "humaneval_plan_generation"
     }
