@@ -1,0 +1,6 @@
+<prompt>
+def calculate_minkowski_distance(vector1: list, vector2: list, p: int) -> float: """ Calculate the Minkowski distance between two vectors with the given parameter p. Parameters: vector1 (list): The first vector. vector2 (list): The second vector. p (int): The parameter for the Minkowski distance calculation. Returns: float: The Minkowski distance between the two vectors. >>> calculate_minkowski_distance([1, 2, 3], [4, 5, 6], 1) 9.0 >>> calculate_minkowski_distance([1, 2, 3], [4, 5, 6], 2) 5.196152422706632 >>> calculate_minkowski_distance([1, 2, 3], [4, 5, 6], 3) 4.641588833612778 """
+</prompt>
+<canonical_solution>
+```python def calculate_minkowski_distance(vector1, vector2, p): """ This function takes two lists of numbers as input: vector1 and vector2, and a parameter p as a positive integer. It calculates the Minkowski distance between the two vectors with the given parameter p and returns the result. Parameters: vector1 (list): The first vector. vector2 (list): The second vector. p (int): The parameter for the Minkowski distance calculation. Returns: float: The Minkowski distance between the two vectors. """ if len(vector1) != len(vector2): raise ValueError("Vectors must have the same length.") distance = sum(abs(x - y) ** p for x, y in zip(vector1, vector2)) ** (1/p) return distance
+</canonical_solution>

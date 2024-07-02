@@ -1,0 +1,43 @@
+<thinking>
+To generate a detailed plan for implementing this function, I need to break down the problem into clear, logical steps. The function needs to process a string, apply specific conditions to each word, and return a modified string. The key aspects to consider are:
+
+1. Handling the input string and lists
+2. Processing each word individually
+3. Applying the conditions (prefixes, suffixes, substrings) case-insensitively
+4. Capitalizing or lowercasing words based on the conditions
+5. Reconstructing the final string
+
+I'll create a step-by-step plan that guides the implementation without providing the actual code. The plan will be detailed enough for a model to follow and implement the function correctly.
+</thinking>
+
+<plan>
+1. Split the input string into a list of words
+   - Use the appropriate string method to split the string into individual words
+
+2. Create an empty list to store the processed words
+   - This list will hold the words after applying the capitalization rules
+
+3. Iterate through each word in the list of words:
+   a. Convert the current word to lowercase for case-insensitive comparison
+   b. Check if the lowercase word meets any of the following conditions:
+      - Starts with any prefix in the 'prefixes' list (case-insensitive)
+      - Ends with any suffix in the 'suffixes' list (case-insensitive)
+      - Contains any substring in the 'substrings' list (case-insensitive)
+   c. If any condition is met:
+      - Capitalize the original word (first letter uppercase, rest lowercase)
+   d. If no condition is met:
+      - Convert the original word to lowercase
+   e. Add the processed word (capitalized or lowercase) to the new list
+
+4. Join the processed words back into a single string
+   - Use a space as the separator between words
+
+5. Return the final processed string
+
+Additional implementation details:
+- For checking prefixes: Use a loop or list comprehension to check if the lowercase word starts with any lowercase prefix
+- For checking suffixes: Use a loop or list comprehension to check if the lowercase word ends with any lowercase suffix
+- For checking substrings: Use a loop or list comprehension to check if any lowercase substring is in the lowercase word
+- Use the appropriate string methods for lowercase conversion, capitalization, and joining words
+- Ensure that the function handles empty input strings and empty lists for prefixes, suffixes, and substrings correctly
+</plan>
