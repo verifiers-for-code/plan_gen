@@ -18,6 +18,7 @@ CUDA_VISIBLE_DEVICES="4" python3 scripts/inference.py --load_index 1
 CUDA_VISIBLE_DEVICES="5" python3 scripts/inference.py --load_index 2
 CUDA_VISIBLE_DEVICES="7" python3 scripts/inference.py --load_index 3
 ```
+(run this in tmux pls)
 
 Then, stitch the results together (change: COLUMN_NAME = "llama3_70b_instruct" and DATASET_NAME = "verifiers-for-code/Combined-Python-450k-filtered")
 ```bash

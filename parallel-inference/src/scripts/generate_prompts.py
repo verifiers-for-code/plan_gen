@@ -9,10 +9,11 @@ from tqdm import tqdm
 DATASET_NAME = "verifiers-for-code/Combined-Python-450k-filtered"
 # Model
 MODEL = "meta-llama/Meta-Llama-3-8B-Instruct"
-NUM_GPUS = 2
+NUM_GPUS = 4
 # Prompts
-SYSTEM_PROMPT = "prompts/system_prompts/test.txt"
-FORMAT_PROMPT = "prompts/formats/test.txt"
+SYS_PROMPT = "prompts/system_prompts/plangen_27k.txt"
+FORMAT_PROMPT = "prompts/formats/plangen_27k.txt"
+FEW_SHOT_ROOT = "prompts/few_shot/plangen_27k/"
 # JSON Output Location
 OUTPUT_DIR = "data/inputs/"
 
@@ -71,9 +72,21 @@ if __name__ == "__main__":
     email_format = read_text_file(FORMAT_PROMPT)
 
     prompt_base = [
+        {"role": "system", "content": read_text_file(SYS_PROMPT)},
+        {"role": "user", "content": read_text_file(FEW_SHOT_ROOT + "example_1_input.txt")},
         {
-            "role": "system",
-            "content": read_text_file(SYSTEM_PROMPT),
+            "role": "assistant",
+            "content": read_text_file(FEW_SHOT_ROOT + "example_1_output.txt"),
+        },
+        {"role": "user", "content": read_text_file(FEW_SHOT_ROOT + "example_2_input.txt")},
+        {
+            "role": "assistant",
+            "content": read_text_file(FEW_SHOT_ROOT + "example_2_output.txt"),
+        },
+        {"role": "user", "content": read_text_file(FEW_SHOT_ROOT + "example_3_input.txt")},
+        {
+            "role": "assistant",
+            "content": read_text_file(FEW_SHOT_ROOT + "example_3_output.txt"),
         },
     ]
 

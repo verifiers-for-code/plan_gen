@@ -6,7 +6,6 @@ import os
 DATA_OUTPUT = "data/outputs/"
 SPLIT_NAMES = ["train"]
 HF_DATASET_NAME = "verifiers-for-code/Combined-Python-450k-filtered"
-ISA_B = True
 
 # Magic constant for column name
 COLUMN_NAME = "llama3_70b_instruct"
