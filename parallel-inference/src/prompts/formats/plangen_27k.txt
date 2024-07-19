@@ -1,0 +1,6 @@
+<prompt>
+{}
+</prompt>
+<canonical_solution>
+{}
+</canonical_solution>

@@ -1,0 +1,28 @@
+from typing import List
+
+def count_distinct_states(matrix: List[List[str]]) -> int:
+    """
+    Find the number of distinct states in a given matrix.
+
+    Each state in the matrix is represented by a string of characters.
+    The matrix can have up to 10^6 rows and columns.
+    The time complexity of the solution should be O(N), where N is the total number of characters in the matrix.
+
+    Args:
+    matrix (List[List[str]]): A 2D list representing the matrix, where each element is a string.
+
+    Returns:
+    int: The number of distinct states in the matrix.
+
+    >>> matrix1 = [['A', 'B', 'C'], ['A', 'B', 'D'], ['A', 'B', 'C']]
+    >>> count_distinct_states(matrix1)
+    2
+
+    >>> matrix2 = [['X', 'Y'], ['Z', 'W'], ['X', 'Y']]
+    >>> count_distinct_states(matrix2)
+    3
+
+    >>> matrix3 = [['1', '2'], ['1', '2'], ['1', '2']]
+    >>> count_distinct_states(matrix3)
+    1
+    """

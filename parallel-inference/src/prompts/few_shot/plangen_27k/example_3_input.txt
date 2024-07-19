@@ -1,0 +1,6 @@
+<prompt>
+Find the number of times a specific word appears in a given list of sentences. The word can be a single word or a multi-word phrase. Return the count of occurrences as well as the indices at which the word/phrase appears in the list of sentences. sentences = ["I love programming.", "Programming is my passion.", "Programming helps me think creatively."] word = "programming" #Expected Output Count: 3 Indices: [0, 1, 2]
+</prompt>
+<code>
+Here is one possible solution: python def find_word_occurrences(sentences, word): count = 0 indices = [] for i in range(len(sentences)): if word.lower() in sentences[i].lower(): count += 1 indices.append(i) return f"Count: {count}\nIndices: {indices}" sentences = ["I love programming.", "Programming is my passion.", "Programming helps me think creatively."] word = "programming" print(find_word_occurrences(sentences, word))  Output:  Count: 3 Indices: [0, 1, 2]  This solution uses a for loop to iterate through each sentence in the given list. It checks if the word (ignoring case) exists in each sentence and if so, increments the count and appends the index to the indices list. Finally, it returns a formatted string with the count and indices.
+</code>

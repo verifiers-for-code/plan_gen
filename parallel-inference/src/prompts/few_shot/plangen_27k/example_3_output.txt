@@ -1,0 +1,22 @@
+from typing import List, Tuple
+
+def find_word_occurrences(sentences: List[str], word: str) -> Tuple[int, List[int]]:
+    """
+    Find the number of times a specific word appears in a given list of sentences and return the count of occurrences
+    as well as the indices at which the word/phrase appears in the list of sentences.
+
+    >>> sentences = ["I love programming.", "Programming is my passion.", "Programming helps me think creatively."]
+    >>> word = "programming"
+    >>> find_word_occurrences(sentences, word)
+    (3, [0, 1, 2])
+
+    >>> sentences = ["The cat is on the mat.", "The dog is in the yard.", "The bird is in the tree."]
+    >>> word = "the"
+    >>> find_word_occurrences(sentences, word)
+    (5, [0, 0, 1, 2, 2])
+
+    >>> sentences = ["Python is awesome", "I love coding in Python", "Python is versatile"]
+    >>> word = "java"
+    >>> find_word_occurrences(sentences, word)
+    (0, [])
+    """
