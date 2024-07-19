@@ -13,7 +13,7 @@ print(root_dir)
 load_dotenv(os.path.join(root_dir, '.env'))
 
 # Load the dataset
-dataset = load_dataset("verifiers-for-code/test-gran", split='train')
+dataset = load_dataset("verifiers-for-code/failed_16_eval", split='test')
 
 # Read the system prompt
 with open(os.path.join(root_dir, 'prompts', 'system_prompts', 'deepseek.txt'), 'r') as file:
@@ -27,10 +27,10 @@ with open(os.path.join(root_dir, 'prompts', 'format', 'deepseek.txt'), 'r') as f
 client = OpenAI(api_key=os.getenv('DEEPSEEK_API_KEY'), base_url="https://api.deepseek.com")
 
 # Print the first prompt
-first_row = dataset[0]
-first_prompt = user_prompt_format.format(first_row['input'], first_row['code'])
-print("First prompt sent to DeepSeek API:")
-print(first_prompt)
+# first_row = dataset[0]
+# first_prompt = user_prompt_format.format(first_row['input'], first_row['code'])
+# print("First prompt sent to DeepSeek API:")
+# print(first_prompt)
 
 def call_deepseek_api(user_prompt):
     max_retries = 1
@@ -45,7 +45,7 @@ def call_deepseek_api(user_prompt):
                     {"role": "user", "content": user_prompt},
                 ],
                 max_tokens=1024,
-                temperature=0.7,
+                temperature=1.0,
                 stream=False
             )
             return response.choices[0].message.content
@@ -59,15 +59,12 @@ def call_deepseek_api(user_prompt):
                 return None
 
 def process_dataset(example):
-    if example['id'] < 1000:
-        user_prompt = user_prompt_format.format(example['input'], example['code'])
-        example['deepseek_solution_eval'] = call_deepseek_api(user_prompt)
-    else:
-        example['deepseek_solution_eval'] = None
+    user_prompt = user_prompt_format.format(example['prompt'], example['canonical_solution'], example['cleaned-aurora_expt_16'], example['output'], example['failed_tests'])
+    example['deepseek_eval'] = call_deepseek_api(user_prompt)
     return example
 
 # Apply the processing function to each row and create a new column
 dataset = dataset.map(process_dataset, desc="Processing rows")
 
 # Push the updated dataset back to Hugging Face
-dataset.push_to_hub("verifiers-for-code/test-gran")
+dataset.push_to_hub("verifiers-for-code/failed_16_eval")

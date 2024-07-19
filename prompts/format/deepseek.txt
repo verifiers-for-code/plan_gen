@@ -1,6 +1,15 @@
 <prompt>	
 {}
 </prompt>
-<code>
+<solution>
 {}
-<code>
+</solution>
+<plan>
+{}
+</plan>
+<generated_code>
+{}
+</generated_code>
+<failed_tests>
+{}
+<failed_tests>
