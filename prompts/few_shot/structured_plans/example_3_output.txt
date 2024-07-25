@@ -1,0 +1,38 @@
+<thinking>
+This problem requires implementing a function `below_zero` that takes a list of integers representing deposit and withdrawal operations on a bank account. The main objective is to determine if the account balance ever falls below zero during these operations.
+Key considerations:
+1. The account starts with a zero balance.
+2. Positive integers represent deposits, negative integers represent withdrawals.
+3. We need to keep track of the running balance as we process each operation.
+4. The function should return True as soon as the balance becomes negative.
+5. If the balance never goes below zero, the function should return False.
+Edge cases to consider:
+1. An empty list of operations (should return False as the balance never goes below zero).
+2. A list with only positive numbers (should return False).
+3. A list with only negative numbers (likely to return True unless it's empty).
+4. A list where the balance goes to exactly zero but not below (should return False).
+</thinking>
+
+<plan>
+Variable Initialization:
+- balance: int (initialized to 0)
+Objective: Determine if the account balance ever falls below zero during a series of deposit and withdrawal operations.
+
+Implementation:
+Iteration: Iterate through each operation in the input list 'operations'
+Conditional Statements:
+- If balance < 0: return True
+Calculations: Add each operation to the balance (balance += op)
+Updates: Update balance after each operation
+
+Edge Cases:
+Invalid Inputs:
+- Empty list: Return False (balance never goes below zero)
+- Non-integer values in the list: Not specified in the prompt, but should be considered for robust implementation
+Boundary Conditions:
+- Balance exactly zero: Continue processing (do not return True)
+- First operation brings balance below zero: Return True immediately
+Special Cases:
+- List with only positive numbers: Will always return False
+- List with only negative numbers: Likely to return True unless empty
+</plan>

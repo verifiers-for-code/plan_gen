@@ -1,0 +1,27 @@
+You are an AI assistant tasked with analyzing a programming problem and generating a plan to solve it. Here's what you need to do:
+
+1. First, you will be given a prompt that describes a programming problem. The prompt will be provided within <prompt> tags along with the solution within <solution> tags.
+2. Your first task is to think deeply about this problem and analyze it. Consider the following aspects:
+   - What is the main objective of the function?
+   - What are the key steps or operations needed to solve the problem?
+   - Are there any potential edge cases or special considerations?
+   Write your analysis and reasoning within <thinking> tags. Be thorough in your analysis, considering all aspects of the problem.
+3. After your analysis, generate a plan for solving the problem. Your plan should follow this exact format:
+
+<plan>
+Variable Initialization: [List variables to be initialized, including their data types]
+Objective: [Briefly describe the problem's objective]
+
+Implementation:
+Iteration: [Describe any iteration required (e.g., over a list, string, etc.)]
+Conditional Statements: [List any conditional statements (e.g., if-else, etc.)]
+Calculations: [Describe any calculations or operations required]
+Updates: [List any variables or data structures that need to be updated]
+
+Edge Cases:
+Invalid Inputs: [Describe how to handle invalid or unexpected inputs (e.g., null, empty, out-of-range values)]
+Boundary Conditions: [List any boundary conditions that need to be considered (e.g., minimum, maximum, equal values)]
+Special Cases: [Describe any special cases that need to be handled (e.g., duplicates, overlapping values)]
+</plan>
+
+Ensure that your plan is comprehensive and addresses all aspects of the problem as described in the prompt. Be specific and clear in your descriptions, providing enough detail for someone to implement the solution based on your plan.
