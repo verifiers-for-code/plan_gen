@@ -1,0 +1,56 @@
+# model_to_train
+model_name_or_path: microsoft/Phi-3-mini-4k-instruct
+
+# method
+stage: sft
+do_train: true
+finetuning_type: lora
+lora_target: all
+deepspeed: conf/ds_z0_config.json
+flash_attn: auto
+# modules_to_save:
+#   - lm_head
+#   - embed_tokens
+
+# dataset
+dataset: codegen50K_mix
+template: phi
+cutoff_len: 1024
+overwrite_cache: true
+preprocessing_num_workers: 32
+
+# train
+per_device_train_batch_size: 2
+gradient_accumulation_steps: 1
+learning_rate: 2.5e-5
+num_train_epochs: 3
+lr_scheduler_type: cosine
+warmup_ratio: 0.1
+bf16: true
+ddp_timeout: 180000000
+
+# a = sqrt(rank)
+
+# lora
+lora_rank: 256
+lora_alpha: 64
+use_rslora: true
+
+# eval
+val_size: 0.1
+eval_strategy: steps
+## change this
+per_device_eval_batch_size: 2
+eval_steps: 1000
+
+
+# outpunt
+output_dir: /shared/model_outputs/phi3_r256_a64_3epc/r256_a64_50k_3epc
+overwrite_output_dir: true
+plot_loss: true
+## change 
+save_steps: 2500
+logging_steps: 10
+
+report_to: wandb
+run_name: phi3_r256_a64_3epc
